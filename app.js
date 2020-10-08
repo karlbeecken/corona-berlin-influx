@@ -7,7 +7,6 @@ axios
   .then((res) => {
     let rate = 0;
     for (let i = res.data.index.length - 7; i < res.data.index.length; i++) {
-      console.log(res.data.index.length - i);
       let count =
         parseInt(res.data.index[i].mitte) +
         parseInt(res.data.index[i].friedrichshain_kreuzberg) +
@@ -23,8 +22,7 @@ axios
         parseInt(res.data.index[i].reinickendorf);
       rate += count;
     }
-    console.log(rate);
     rate = rate / 3769000; // divide by inhabitants
     rate = rate * 100000; // multiply by 100000 to get the 7-day-incident rate
-    console.log(rate);
+    console.log("7 day incident rate: " + rate);
   });
