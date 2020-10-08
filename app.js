@@ -1,4 +1,6 @@
 const axios = require("axios");
+const os = require("os");
+const Influx = require("influx");
 
 axios
   .get(
@@ -25,4 +27,26 @@ axios
     rate = rate / 3769000; // divide by inhabitants
     rate = rate * 100000; // multiply by 100000 to get the 7-day-incident rate
     console.log("7 day incident rate: " + rate);
+
+    const influx = new Influx.InfluxDB({
+      host: "localhost",
+      database: "corona",
+      schema: [
+        {
+          measurement: "corona-7-day-incidents-berlin",
+          fields: {
+            rate: Influx.FieldType.FLOAT,
+          },
+          tags: ["host"],
+        },
+      ],
+    });
+
+    influx.writePoints([
+      {
+        measurement: "corona-7-day-incidents-berlin",
+        tags: { host: os.hostname() },
+        fields: { rate: rate },
+      },
+    ]);
   });
