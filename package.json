@@ -1,0 +1,8 @@
+{
+  "name": "corona-berlin-influx",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/karlbeecken/corona-berlin-influx",
+  "author": "Karl Beecken <karl@beecken.berlin>",
+  "license": "MIT"
+}
