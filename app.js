@@ -139,7 +139,7 @@ axios
             geohash: Influx.FieldType.STRING,
             name: Influx.FieldType.STRING,
           },
-          tags: ["host", "geohash"],
+          tags: ["host", "geohash", "district"],
         },
       ],
     });
@@ -147,7 +147,11 @@ axios
     influx.writePoints([
       {
         measurement: "corona-7-day-incidents-berlin",
-        tags: { host: os.hostname(), geohash: "u33d8vx6ubk2" },
+        tags: {
+          host: os.hostname(),
+          geohash: "u33d8vx6ubk2",
+          district: "berlin",
+        },
         fields: { rate: rate, geohash: "u33d8vx6ubk2", name: "Berlin" },
       },
     ]);
@@ -158,21 +162,25 @@ axios
         database: "corona",
         schema: [
           {
-            measurement: `corona-7-day-incidents-${district}`,
+            measurement: `corona-7-day-incidents-berlin`,
             fields: {
               rate: Influx.FieldType.FLOAT,
               geohash: Influx.FieldType.STRING,
               name: Influx.FieldType.STRING,
             },
-            tags: ["host", "geohash"],
+            tags: ["host", "geohash", "district"],
           },
         ],
       });
 
       influx.writePoints([
         {
-          measurement: `corona-7-day-incidents-${district}`,
-          tags: { host: os.hostname(), geohash: districts[district].geohash },
+          measurement: `corona-7-day-incidents-berlin`,
+          tags: {
+            host: os.hostname(),
+            geohash: districts[district].geohash,
+            district: district,
+          },
           fields: {
             rate:
               (districts[district].rate / districts[district].inhabitants) *
