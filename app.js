@@ -36,8 +36,10 @@ axios
           measurement: "corona-7-day-incidents-berlin",
           fields: {
             rate: Influx.FieldType.FLOAT,
+            geohash: Influx.FieldType.STRING,
+            name: Influx.FieldType.STRING
           },
-          tags: ["host", "geohash"],
+          tags: ["host"],
         },
       ],
     });
@@ -45,8 +47,8 @@ axios
     influx.writePoints([
       {
         measurement: "corona-7-day-incidents-berlin",
-        tags: { host: os.hostname(), geohash: "u33d8vx6ubk2" },
-        fields: { rate: rate },
+        tags: { host: os.hostname() },
+        fields: { rate: rate, geohash: "u33d8vx6ubk2", name: "Berlin" },
       },
     ]);
   });
