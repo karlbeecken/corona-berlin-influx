@@ -100,7 +100,7 @@ axios
         parseInt(res.data.index[i].reinickendorf);
       rate += count;
       districts.mitte.rate += parseInt(res.data.index[i].mitte);
-      districts.friedrichshain_kreuzberg.rate = parseInt(
+      districts.friedrichshain_kreuzberg.rate += parseInt(
         res.data.index[i].friedrichshain_kreuzberg
       );
       districts.pankow.rate += parseInt(res.data.index[i].pankow);
@@ -194,6 +194,8 @@ axios
       console.log(
         district +
           ": " +
+          districts[district].rate +
+          " " +
           (districts[district].rate / districts[district].inhabitants) * 100000
       );
     }
