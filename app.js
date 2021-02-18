@@ -9,6 +9,8 @@ axios
   .then((res) => {
     let rate = 0;
 
+    console.log(res.data);
+
     let districts = {
       mitte: {
         rate: 0,
@@ -84,7 +86,7 @@ axios
       },
     };
 
-    for (let i = res.data.index.length - 7; i < res.data.index.length; i++) {
+    for (let i = 0; i < 7; i++) {
       let count =
         parseInt(res.data.index[i].mitte) +
         parseInt(res.data.index[i].friedrichshain_kreuzberg) +
@@ -98,6 +100,7 @@ axios
         parseInt(res.data.index[i].marzahn_hellersdorf) +
         parseInt(res.data.index[i].lichtenberg) +
         parseInt(res.data.index[i].reinickendorf);
+      console.log(count);
       rate += count;
       districts.mitte.rate += parseInt(res.data.index[i].mitte);
       districts.friedrichshain_kreuzberg.rate += parseInt(
