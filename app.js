@@ -4,7 +4,7 @@ const Influx = require("influx");
 
 axios
   .get(
-    "https://www.berlin.de/lageso/gesundheit/infektionsepidemiologie-infektionsschutz/corona/tabelle-bezirke-gesamtuebersicht/index.php/index/all.json?q="
+    "https://www.berlin.de/lageso/gesundheit/infektionskrankheiten/corona/tabelle-bezirke-gesamtuebersicht/index.php/index/all.json?q="
   )
   .then((res) => {
     let rate = 0;
