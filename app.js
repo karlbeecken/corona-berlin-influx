@@ -86,7 +86,7 @@ axios
       },
     };
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = res.data.index.length - 7; i < res.data.index.length; i++) {
       let count =
         parseInt(res.data.index[i].mitte) +
         parseInt(res.data.index[i].friedrichshain_kreuzberg) +
